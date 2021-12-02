@@ -1,5 +1,6 @@
 ## Git_Events_Athlete-Project
 BackEnd Project about Events and Athlete interactions.
+
 Este é um projeto de BackEnd que tem por objetivo a criação de uma
 API rest para servir os dados do arquivo eventos históricos juegos olímpicos.
 Nome do arquivo: "athlete_events.csv".
@@ -9,8 +10,8 @@ Nome do arquivo: "athlete_events.csv".
 
 ### Tecnologías usadas
 
-* Python
-* Django
+* Python 3.9.5
+* Django 3.2.9
 * sqlite3
 
 ### Descrição do projeto
