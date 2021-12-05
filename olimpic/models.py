@@ -2,10 +2,8 @@ from django.db import models
  
 
 class Personal(models.Model):
-    """ Criação do modelo Personal. class Personal herda 
-        da classe models.Models sus funcionalidades.
-        A classe Personal cria uma tabela em que seus atributos
-        são as colunas da mesma. 
+    """ Criação do modelo Personal. 
+        class Personal herda da classe models.Models 
     """
     Name = models.CharField(max_length=255)
     Sex = models.CharField(max_length=1)

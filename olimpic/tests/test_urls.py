@@ -1,14 +1,20 @@
-from rest_framework import status
-from rest_framework.test import APITestCase, APIClient
+from django.test import SimpleTestCase
+from django.urls.base import reverse
 
 
-class URLTest(APITestCase):
-    def setUp(self):
-        self.client = APIClient()
 
-    def test_url_returns_200(self):
-        url = '/game/personal'
-        #response = self.client.get(url)
-        response = self.client.get(url, follow=True)
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data), 1)
+class AdminTest(SimpleTestCase):
+
+    def test_admin_status(self):
+        '''Teste da url admin'''
+        resp = self.client.get('admin/')
+        self.assertEqual(resp.status_code, 200)
+
+    def test_url_path(self):
+        '''Teste da url da rota'''
+        resp = self.client.get(reverse('personal'))
+        self.assertEqual(resp.status_code,200)
+        
+
+
+

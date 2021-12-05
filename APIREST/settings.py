@@ -79,14 +79,14 @@ WSGI_APPLICATION = 'APIREST.wsgi.application'
 
 DATABASES = {
     'default': {
-        #'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'ENGINE': 'django.db.backends.sqlite3',
-        #'NAME': 'django_db',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        #'USER': 'postgres',
-        #'PASSWORD': '1234',
-        #'HOST': 'localhost',
-        #'PORT': '5432',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        #'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'django_DB',
+        #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'USER': 'postgres',
+        'PASSWORD': '1234',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }   
 }
 
