@@ -36,9 +36,8 @@ class PersonalViewSet(viewsets.ViewSet):
 
 
 class PersonalViewSet(viewsets.ModelViewSet):
-    """Criação da classe Viewset herdando de ModelViewSet. Esta clase é combinada com
-    a classe PersonalViewSet(viewsets.ViewSet) para completmentar a operação com ModelViewSet.
-    ModelViewSet permite obter as ações: create, patch, put, destroy de forma intrínseca.
+    """Criação da classe Viewset herdando de ModelViewSet. 
+       ModelViewSet permite obter as ações: create, patch, put, destroy de forma intrínseca.
     """
     serializer_class = PersonalSerializer
     queryset = Personal.objects.all()
@@ -71,40 +70,35 @@ class EventoViewSet(viewsets.ViewSet):
 
 class EventoViewSet(viewsets.ModelViewSet):
     """Criação da classe Viewset herdando de ModelViewSet. 
-       Esta clase é complementada com a classe EventoViewSet(viewsets.ViewSet) para 
-       operar com ModelViewSet
+       Esta clase é complementada com a classe EventoViewSet(viewsets.ViewSet) 
     """                                                                                               
     serializer_class = EventoSerializer
     queryset = Evento.objects.all()
     serializer = EventoSerializer(queryset, many=True)
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ('Games', 'Year', 'Event',)
 
 
 # Script de preenchimento do banco de dados
 # Função que retorna valor númerico o un valor NUll
 
-def tratamento(valor):
-    """Função que captura um dado proveniente 
-       do arquivo csv. 
-       Se o valor for númerico retorna um valor numérico.
-       Se o valor for string retorna um Null.
-    """
-    enumero = valor.isnumeric()
-    if enumero:
-        return valor
-    else:
-        return None
+class Number:
+    
+    def tratamento(self, valor):
+        """Função que captura um dado numérico o Null proveniente 
+           do arquivo csv.
+        """
+        enumero = valor.isnumeric()
+        if enumero:
+            return valor
+        else:
+            return None
+info = Number()
+
+
 
 def populate_db(request):
     """ Função para popular as tabelas do banco de dados.
-        persons = [], serve para armazenar os dados dos atletas
-        events = [], serve para armazenar os dados dos eventos esportivos.
-        Dentro desta função é carregado e lido o arquivo csv.
-        A variável data capta uma lista dos dados do arquivo csv.
-        É feita uma iteração baseada nos id dos atletas. 
-        Após disso são adicionados os dados dos atletas e dos eventos nos 
-        campos do modelo.
-        Finalmente, é usado um bulk_create para crear as instâncias dos objetos dentro da 
-        tabela do bando de dados.
     """
     persons = []
     events = []
@@ -119,13 +113,13 @@ def populate_db(request):
                 last_id = int(filas[0])
                 persons.append(Personal(Name=filas[1], 
                                     Sex=filas[2], 
-                                    Height=tratamento(filas[4]), 
-                                    Weight=tratamento(filas[5]), 
+                                    Height=info.tratamento(filas[4]), 
+                                    Weight=info.tratamento(filas[5]), 
                                     Team=filas[6], 
                                     NOC=filas[7]))
 
                 events.append(Evento(Games=filas[8],
-                                Age=tratamento(filas[3]), 
+                                Age=info.tratamento(filas[3]), 
                                 Year=filas[9], 
                                 Season=filas[10], 
                                 City=filas[11], 
