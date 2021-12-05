@@ -3,8 +3,8 @@ from .serializers import PersonalSerializer, EventoSerializer
 from rest_framework.response import Response
 from rest_framework import viewsets, filters
 from django.shortcuts import get_object_or_404
-from django.http import HttpResponse
-import csv
+
+
 
 
 #Criação da classe do tipo ViewSet
